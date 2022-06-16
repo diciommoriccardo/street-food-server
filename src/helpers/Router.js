@@ -1,12 +1,16 @@
 import authMiddleware from '../middlewares/auth.js';
 import notFoundMiddleware from '../middlewares/notFound.js';
+import orderRouter from '../routes/Orders.js';
+import productsRouter from '../routes/Products.js';
 
 class Router {
     constructor( app ){
         this.app = app;
         this.routerSchema = {
-            '/api': [
+            '/api/v1/': [
                 {  
+                    'orders': orderRouter,
+                    'products': productsRouter
                 }
             ],
             '*': notFoundMiddleware,

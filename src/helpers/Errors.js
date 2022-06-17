@@ -23,6 +23,6 @@ export class InternalError extends customError {
 export class ParamsMissing extends customError {
     constructor(param, status = 400) {
         super(`Parameter ${param} is missing.`);
-        this.data = { resource, status };
+        this.data = { param, status };
     }
 }

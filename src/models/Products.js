@@ -2,13 +2,14 @@ import mongoose from "mongoose";
 import autopopulate from 'mongoose-autopopulate';
 
 const Products = mongoose.model("Products", mongoose.Schema({
-    ID: {
+    _id: {
         type: String,
         unique: true
     },
     displayName: String,
     description: String,
-    price: Number
+    price: Number,
+    category: String
 }).plugin(autopopulate))
 
 export default Products;

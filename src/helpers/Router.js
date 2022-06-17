@@ -7,10 +7,10 @@ class Router {
     constructor( app ){
         this.app = app;
         this.routerSchema = {
-            '/api/v1/': [
+            '/api/v1': [
                 {  
-                    'orders': orderRouter,
-                    'products': productsRouter
+                    '/orders': orderRouter,
+                    '/products': productsRouter
                 }
             ],
             '*': notFoundMiddleware,

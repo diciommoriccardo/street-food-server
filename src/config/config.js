@@ -12,7 +12,9 @@ const SERVER = {
 };
 
 const DATABASE = {
-  HOST: process.env.DATABASE_URI
+  USER: process.env.DATABASE_USER,
+  PASS: process.env.DATABASE_PASS,
+  CLUSTER_SHARD: process.env.DATABASE_CLUSTER_SHARD
 };
 
 const FILES = {

@@ -9,7 +9,8 @@ router.post("/", (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:_id", (req, res) => {
+    console.log("get")
     orderController.getById(req)
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json(err))

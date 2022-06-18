@@ -3,6 +3,7 @@ import https from 'https';
 import express from 'express';
 import Router from './src/helpers/Router.js';
 import getCertificate from './src/utils/ssl/getCertificate.js';
+import Mongo from './src/helpers/Mongo.js';
 import { SERVER } from './src/config/config.js';
 
 class WebServer {
@@ -11,6 +12,7 @@ class WebServer {
         this.app.use(express.json());
         this.router = new Router(this.app).setAllRoutes();
         this.http = http.Server(this.app);
+        this.mongo = new Mongo();
         if (ssl_certificate) this.https = https.Server(ssl_certificate, this.app);
     }
 

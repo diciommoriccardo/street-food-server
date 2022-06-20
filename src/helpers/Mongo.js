@@ -5,7 +5,7 @@ const uri = `mongodb+srv://${DATABASE.USER}:${DATABASE.PASS}${DATABASE.CLUSTER_S
 
 class Mongo{
     constructor(){
-        mongoose.connect(uri)
+        mongoose.connect(uri, {maxPoolSize: 20})
         .then(() => console.log("Mongo connect succesfully"))
         .catch(err => console.log(err))
     }

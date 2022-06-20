@@ -12,6 +12,14 @@ const orderController = {
         })
     },
 
+    getAll: () => {
+        return new Promise((resolve, reject) => {
+            Orders.find()
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
+    },
+
     create: (req) => {
         return new Promise((resolve, reject) => {
             new Orders(req.body).save()

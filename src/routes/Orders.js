@@ -10,8 +10,13 @@ router.post("/", (req, res) => {
 })
 
 router.get("/:_id", (req, res) => {
-    console.log("get")
     orderController.getById(req)
+    .then(data => res.status(200).json(data))
+    .catch(err => res.status(500).json(err))
+})
+
+router.get("/", (req, res) => {
+    orderController.getAll()
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json(err))
 })

@@ -1,7 +1,10 @@
 import Router from "express";
 import productsController from "../controllers/Products.controller.js";
+import authMiddleware from "../middlewares/auth.js";
 
 const router = new Router();
+
+router.use(authMiddleware)
 
 router.post("/", (req, res) => {
     productsController.create(req)

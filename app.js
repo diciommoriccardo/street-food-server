@@ -5,10 +5,12 @@ import Router from './src/helpers/Router.js';
 import getCertificate from './src/utils/ssl/getCertificate.js';
 import Mongo from './src/helpers/Mongo.js';
 import { SERVER } from './src/config/config.js';
+import cors from 'cors';
 
 class WebServer {
     constructor({ ssl_certificate }) {
         this.app = express();
+        this.app.use(cors({origin: '*'}))
         this.app.use(express.json());
         this.router = new Router(this.app).setAllRoutes();
         this.http = http.Server(this.app);

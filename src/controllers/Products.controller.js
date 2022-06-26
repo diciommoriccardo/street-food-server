@@ -14,6 +14,7 @@ const productsController = {
 
     create: (req) => {
         return new Promise((resolve, reject) => {
+            console.log(req.body)
             new Products(req.body).save()
             .then(data => resolve(data))
             .catch(err => reject(err))
@@ -34,6 +35,15 @@ const productsController = {
             .then(data => resolve(data))
             .catch(err => reject(err))
         })
+    },
+
+    getByCategory: (category) => {
+        return new Promise((resolve, reject) => {
+            Products.find({category: {category}})
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
+
     }
 }
 

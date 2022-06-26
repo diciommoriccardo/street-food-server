@@ -18,8 +18,20 @@ router.get("/:_id", (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
+router.get("/", (req, res) => {
+    productsController.getAll(req)
+    .then(data => res.status(200).json(data))
+    .catch(err => {console.log(err); return res.status(500).json(err)})
+})
+
 router.put("/", (req, res) => {
     productsController.updateOne(req)
+    .then(data => res.status(200).json(data))
+    .catch(err => res.status(500).json(err))
+})
+
+router.get("/:category", (req, res) => {
+    productsController.getByCategory(req.params.category)
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json(err))
 })

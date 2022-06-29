@@ -14,8 +14,7 @@ const productsController = {
 
     create: (req) => {
         return new Promise((resolve, reject) => {
-            console.log(req.body)
-            new Products(req.body).save()
+            new Products(req).save()
             .then(data => resolve(data))
             .catch(err => reject(err))
         })
@@ -23,7 +22,7 @@ const productsController = {
 
     getAll: (req) => {
         return new Promise((resolve, reject) => {
-            Products.find().skip(req.body.offset).limit(req.body.limit)
+            Products.find().skip(req.params.offset).limit(req.params.limit)
             .then(data => resolve(data))
             .catch(err => reject(err))
         })
@@ -39,9 +38,9 @@ const productsController = {
 
     getByCategory: (category) => {
         return new Promise((resolve, reject) => {
-            Products.find({category: {category}})
-            .then(data => resolve(data))
-            .catch(err => reject(err))
+            Products.find({ category: category })
+            .then(data => {console.log(data); return resolve(data)})
+            .catch(err => {console.log(err); return reject(err)})
         })
 
     }

@@ -1,4 +1,5 @@
 import Products from '../models/Products.js';
+import mongoose from 'mongoose'
 import { ParamsMissing } from '../helpers/Errors.js';
 
 const productsController = {
@@ -43,6 +44,14 @@ const productsController = {
             .catch(err => {console.log(err); return reject(err)})
         })
 
+    },
+
+    delete: (_id) => {
+        return new Promise((resolve, reject) => {
+            Products.deleteOne(mongoose.Types.ObjectId(_id))
+            .then(data => resolve(data))
+            .catch(err => reject(err))
+        })
     }
 }
 

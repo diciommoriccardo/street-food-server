@@ -10,7 +10,11 @@ import cors from 'cors';
 class WebServer {
     constructor({ ssl_certificate }) {
         this.app = express();
-        this.app.use(cors({origin: '*'}))
+        this.app.use(cors({
+            origin: '*', 
+            methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+            allowedHeaders: ['Content-Type', 'Authorization']
+        }))
         this.app.use(express.json());
         this.router = new Router(this.app).setAllRoutes();
         this.http = http.Server(this.app);

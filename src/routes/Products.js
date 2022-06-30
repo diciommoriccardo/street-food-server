@@ -8,7 +8,6 @@ const router = new Router();
 router.use(authMiddleware)
 
 router.post("/", uploadS3.single('prodImage'), (req, res) => {
-    console.log(req)
     productsController.create({
         displayName: req.body.displayName,
         description: req.body.description,
@@ -24,6 +23,12 @@ router.get("/:_id", (req, res) => {
     productsController.getById(req)
     .then(data => res.status(200).json(data))
     .catch(err => res.status(500).json(err))
+})
+
+router.delete('/:_id', (req, res) => {
+    productsController.delete(req.params._id)
+    .then(data => {console.log(data); return res.status(204).json(data)})
+    .catch(err => {console.log(err); return res.status(500).json(err)})
 })
 
 router.get("/", (req, res) => {

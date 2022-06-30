@@ -19,7 +19,8 @@ const Orders = mongoose.model("Orders", mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Users",
         autopopulate: true
-    }
+    },
+    status: String
 }).plugin(autopopulate))
 
 

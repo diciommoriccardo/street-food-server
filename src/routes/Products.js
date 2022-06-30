@@ -1,4 +1,5 @@
 import Router from "express";
+import mongoose from "mongoose";
 import productsController from "../controllers/Products.controller.js";
 import authMiddleware from "../middlewares/auth.js";
 import uploadS3 from '../middlewares/upload.js';
@@ -37,10 +38,18 @@ router.get("/", (req, res) => {
     .catch(err => {console.log(err); return res.status(500).json(err)})
 })
 
-router.put("/", (req, res) => {
-    productsController.updateOne(req)
+router.put("/", uploadS3.single('prodImage'), (req, res) => {
+    console.log(req.body)
+    productsController.updateOne({
+        _id: req.body._id,
+        displayName: req.body.displayName,
+        description: req.body.description,
+        price: req.body.price,
+        category: req.body.category,
+        imgUrl: req.file ? req.file.location : req.body.imgUrl
+    })
     .then(data => res.status(200).json(data))
-    .catch(err => res.status(500).json(err))
+    .catch(err => {console.log(err); return res.status(500).json(err)})
 })
 
 router.get("/category/:category", (req, res) => {

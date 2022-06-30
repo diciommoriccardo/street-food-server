@@ -31,7 +31,8 @@ const productsController = {
 
     updateOne: (req) => {
         return new Promise((resolve, reject) => {
-            Products.findOneAndUpdate(req.body._id, req.body)
+            console.log(req)
+            Products.findOneAndUpdate(mongoose.Types.ObjectId(req._id), req)
             .then(data => resolve(data))
             .catch(err => reject(err))
         })
